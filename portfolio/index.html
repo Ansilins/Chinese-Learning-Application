@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ansilin Kumar S M</title>
+<meta name="description" content="Ansilin Kumar S M — AI engineer and researcher working on physics-guided AI, explainable AI and computer vision. Based in Taipei, Taiwan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column (max ~1080px) with a left "label" rail per section — like a research instrument log. */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #132030;
+  --muted: #566476;
+  --rule: #d9dfe6;
+  --accent: #0b7480;
+  --accent-soft: #e1f0f1;
+  --crater: #c9d1da;
+  --shadow: #7d8a99;
+
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2.3rem, 5.5vw, 3.6rem);
+  --gutter: clamp(16px, 4vw, 40px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d141c; --surface: #141d27; --ink: #e3e9ef; --muted: #9aa8b7;
+    --rule: #26323f; --accent: #4fc0cb; --accent-soft: #15313a;
+    --crater: #2a3643; --shadow: #0a0f15; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d141c; --surface: #141d27; --ink: #e3e9ef; --muted: #9aa8b7;
+  --rule: #26323f; --accent: #4fc0cb; --accent-soft: #15313a;
+  --crater: #2a3643; --shadow: #0a0f15; color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: var(--gutter); }
+
+/* Header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; }
+.mark { font-family: var(--display); font-weight: 750; font-size: 1.05rem; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.nav { display: flex; gap: clamp(12px, 2.4vw, 28px); font-size: var(--step--1); overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+.nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.eyebrow { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.hero h1 { font-size: var(--step-3); font-weight: 750; letter-spacing: -0.025em; margin-top: 14px; }
+.hero .role { font-family: var(--display); font-weight: 500; font-size: var(--step-1); color: var(--muted); margin-top: 10px; }
+.hero .lede { margin-top: 22px; max-width: 58ch; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 999px; font-size: var(--step--1); font-weight: 600;
+  text-decoration: none; border: 1px solid var(--rule); color: var(--ink); background: var(--surface);
+  cursor: pointer; font-family: var(--body);
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn.primary:hover { color: var(--bg); filter: brightness(1.08); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.loc { margin-top: 18px; font-size: var(--step--1); color: var(--muted); display: flex; align-items: center; gap: 6px; }
+
+.figure { margin: 0; }
+.figure svg { width: 100%; height: auto; display: block; max-width: 100%; }
+.figure figcaption { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+/* Sections */
+section.block { border-top: 1px solid var(--rule); padding-block: clamp(44px, 6vw, 72px); }
+section.block .wrap { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); }
+.label h2 { font-size: var(--step-2); font-weight: 650; letter-spacing: -0.015em; position: sticky; top: 80px; }
+.label .count { display: block; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); font-weight: 400; margin-top: 6px; letter-spacing: 0.04em; }
+
+.focus { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.chip { font-family: var(--mono); font-size: 0.78rem; padding: 5px 11px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); }
+
+/* Timeline */
+.timeline { display: grid; gap: 36px; }
+.entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; row-gap: 4px; }
+.entry h3 { font-size: var(--step-1); font-weight: 650; letter-spacing: -0.01em; }
+.entry .when { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); white-space: nowrap; padding-top: 4px; font-variant-numeric: tabular-nums; }
+.entry .org { grid-column: 1 / -1; color: var(--muted); }
+.entry .tag { display: inline-block; margin-top: 6px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+.entry ul { grid-column: 1 / -1; margin-top: 10px; display: grid; gap: 6px; max-width: 70ch; }
+.entry li { padding-left: 18px; position: relative; }
+.entry li::before { content: ""; position: absolute; left: 2px; top: 0.72em; width: 6px; height: 1px; background: var(--accent); }
+
+/* Publications */
+.pubs { display: grid; gap: 0; counter-reset: pub; }
+.pub { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding-block: 18px; border-bottom: 1px solid var(--rule); }
+.pub:first-child { padding-top: 0; }
+.pub::before { counter-increment: pub; content: "[" counter(pub) "]"; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.pub .t { font-weight: 600; line-height: 1.4; }
+.venue { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; border: 1px solid var(--rule); color: var(--muted); white-space: nowrap; text-decoration: none; }
+a.venue:hover { border-color: var(--accent); color: var(--accent); }
+.venue.status { border-color: var(--accent); color: var(--accent); }
+
+/* Projects */
+.projects { display: grid; gap: 20px; }
+.project { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: clamp(20px, 3vw, 28px); display: grid; gap: 12px; }
+.project header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.project h3 { font-size: var(--step-1); font-weight: 650; letter-spacing: -0.01em; }
+.project .gh { font-size: var(--step--1); font-weight: 600; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
+.project .gh svg { width: 15px; height: 15px; }
+.project p { max-width: 70ch; }
+.metrics { display: flex; flex-wrap: wrap; gap: 10px 28px; padding-block: 6px; }
+.metric { display: grid; }
+.metric b { font-family: var(--mono); font-weight: 500; font-size: 1.15rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+.metric span { font-size: 0.8rem; color: var(--muted); }
+.tools { display: flex; flex-wrap: wrap; gap: 6px; }
+.tools li { font-family: var(--mono); font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; background: var(--bg); color: var(--muted); border: 1px solid var(--rule); }
+
+/* Education / skills / certs */
+.edu { display: grid; gap: 28px; }
+.skills { display: grid; gap: 18px; }
+.skill { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.skill:last-child { border-bottom: 0; padding-bottom: 0; }
+.skill dt { font-weight: 600; }
+.skill dd { margin: 0; color: var(--muted); }
+.certs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.cert { border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; background: var(--surface); display: grid; gap: 4px; align-content: start; }
+.cert .n { font-weight: 600; line-height: 1.35; }
+.cert .m { font-size: 0.85rem; color: var(--muted); }
+.cert .id { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); overflow-wrap: anywhere; }
+.langs { display: flex; flex-wrap: wrap; gap: 10px 32px; }
+.lang { display: grid; }
+.lang b { font-family: var(--display); font-weight: 650; font-size: var(--step-1); }
+.lang span { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Contact */
+.contact { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var(--rule); background: var(--surface); }
+.contact h2 { font-size: var(--step-3); font-weight: 750; letter-spacing: -0.025em; max-width: 18ch; }
+.contact p { margin-top: 16px; color: var(--muted); max-width: 56ch; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+.mail code { font-family: var(--mono); font-size: clamp(0.95rem, 2.6vw, 1.2rem); color: var(--ink); user-select: all; overflow-wrap: anywhere; }
+.copied { font-size: var(--step--1); color: var(--accent); }
+footer { padding-block: 24px; font-size: 0.8rem; color: var(--muted); background: var(--surface); border-top: 1px solid var(--rule); }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 820px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .figure { max-width: 420px; }
+  section.block .wrap { grid-template-columns: 1fr; }
+  .label h2 { position: static; }
+  .certs { grid-template-columns: 1fr; }
+  .skill { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 560px) {
+  .nav { display: none; }
+  .entry { grid-template-columns: 1fr; }
+  .entry .when { padding-top: 0; }
+  .pub { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .pub::before { display: none; }
+  .pub .venue { justify-self: start; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Ansilin Kumar</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">AI Engineer &amp; Researcher</p>
+        <h1>Ansilin Kumar S M</h1>
+        <p class="role">Physics-guided AI · Explainable AI · Computer vision</p>
+        <p class="lede">I build deep learning systems that can be deployed and explained, for autonomous drones, planetary mapping and medical imaging. My work includes peer-reviewed publications and an ISRO-funded research project on drone health diagnostics. I am starting a Master's in Electrical Engineering and Computer Science at National Taipei University of Technology.</p>
+        <div class="links">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn" href="https://www.linkedin.com/in/ansilin-kumar/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn</a>
+          <a class="btn" href="https://github.com/Ansilins" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            GitHub</a>
+        </div>
+        <p class="loc">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          Taipei, Taiwan
+        </p>
+      </div>
+
+      <figure class="figure" aria-label="Diagram of shadow-based crater depth estimation">
+        <svg viewBox="0 0 360 300" role="img">
+          <title>Shadow-based crater morphometry</title>
+          <defs>
+            <clipPath id="bowl"><ellipse cx="180" cy="160" rx="96" ry="96"/></clipPath>
+          </defs>
+          <rect x="0" y="0" width="360" height="300" rx="10" fill="var(--surface)" stroke="var(--rule)"/>
+          <!-- regolith speckle -->
+          <g fill="var(--crater)">
+            <circle cx="40" cy="48" r="3"/><circle cx="318" cy="62" r="5"/><circle cx="300" cy="250" r="3"/>
+            <circle cx="58" cy="238" r="6"/><circle cx="330" cy="170" r="2.5"/><circle cx="28" cy="150" r="2"/>
+            <circle cx="96" cy="30" r="2"/><circle cx="262" cy="276" r="2"/>
+          </g>
+          <!-- crater rim, floor, and shadow cast from the sunward rim -->
+          <circle cx="180" cy="160" r="104" fill="none" stroke="var(--crater)" stroke-width="8"/>
+          <g clip-path="url(#bowl)">
+            <circle cx="180" cy="160" r="96" fill="var(--shadow)"/>
+            <circle cx="220" cy="160" r="100" fill="var(--crater)"/>
+          </g>
+          <!-- detection box -->
+          <rect x="70" y="50" width="220" height="220" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <rect x="70" y="36" width="58" height="18" fill="var(--accent)"/>
+          <text x="78" y="49" font-family="JetBrains Mono, monospace" font-size="10.5" fill="var(--surface)">crater</text>
+          <!-- diameter -->
+          <line x1="84" y1="286" x2="276" y2="286" stroke="var(--ink)" stroke-width="1"/>
+          <line x1="84" y1="280" x2="84" y2="292" stroke="var(--ink)"/>
+          <line x1="276" y1="280" x2="276" y2="292" stroke="var(--ink)"/>
+          <rect x="150" y="279" width="60" height="14" fill="var(--surface)"/>
+          <text x="180" y="290" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="var(--ink)">D</text>
+          <!-- shadow length -->
+          <line x1="84" y1="160" x2="124" y2="160" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="124" y1="154" x2="124" y2="166" stroke="var(--accent)" stroke-width="2"/>
+          <text x="104" y="180" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="var(--ink)">L</text>
+          <!-- sun direction -->
+          <g stroke="var(--muted)" stroke-width="1.2" fill="none">
+            <line x1="18" y1="112" x2="58" y2="132"/>
+            <path d="M50 124l8 8-11 2"/>
+          </g>
+          <text x="16" y="104" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)">sun ∠θ</text>
+          <text x="344" y="24" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)">d ≈ L · tan θ</text>
+        </svg>
+        <figcaption>How my lunar crater method works: depth estimated from shadow length and sun elevation in a single 2D image, without a DEM.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="label"><h2>Focus</h2></div>
+      <div>
+        <p style="max-width:65ch">I work where physical models meet machine learning. I turn raw telemetry, satellite and planetary imagery, and medical scans into models whose outputs an engineer can check and trust. I care about the full path: data acquisition, preprocessing, model design, explanation, and deployment on real hardware.</p>
+        <ul class="focus" aria-label="Research areas">
+          <li class="chip">Physics-guided ML</li>
+          <li class="chip">Explainable AI (SHAP)</li>
+          <li class="chip">UAV health monitoring</li>
+          <li class="chip">Planetary remote sensing</li>
+          <li class="chip">Medical image synthesis</li>
+          <li class="chip">Agentic AI</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="label"><h2>Experience <span class="count">2020 – 2026</span></h2></div>
+      <div class="timeline">
+        <article class="entry">
+          <h3>Research Associate</h3>
+          <span class="when">Jan 2026 – Aug 2026</span>
+          <p class="org">Vel Tech Rangarajan Dr. Sagunthala R&amp;D Institute of Science and Technology<br><span class="tag">ISRO-funded · Government of India project</span></p>
+          <ul>
+            <li>Developed a physics-guided explainable AI framework for multi-domain post-flight diagnostic analysis of autonomous drones using flight dynamics data.</li>
+            <li>Managed flight data acquisition, preprocessing and model training for reliable, transparent drone health assessment.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <h3>Intern, Agentic AI Development</h3>
+          <span class="when">Jul 2025 – Jan 2026</span>
+          <p class="org">Anlyt Media</p>
+          <ul>
+            <li>Architected and deployed production-ready LLM-powered autonomous agents, delivering custom agentic AI automation for client requirements.</li>
+            <li>Designed backend automation pipelines on Microsoft Power Platform, connecting AI reasoning with operational systems.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <h3>Research Intern</h3>
+          <span class="when">Feb 2025 – Jun 2025</span>
+          <p class="org">National Taipei University of Technology, Taiwan</p>
+          <ul>
+            <li>Developed a deep learning framework that computes lunar crater diameter, depth and volume directly from 2D imagery, without DEM data.</li>
+            <li>Implemented shadow-based detection with U-Net and YOLOv12 for accurate crater morphometry.</li>
+            <li>Validated model outputs against DEM-based analysis and manual measurements.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <h3>Research Intern</h3>
+          <span class="when">Jun 2024 – Jan 2025</span>
+          <p class="org">Centre for Autonomous System Research (CASR), Vel Tech R&amp;D Institute of Science and Technology</p>
+          <ul>
+            <li>Built a benchmarking framework to evaluate and compare feature-matching algorithms for multispectral drone image stitching.</li>
+            <li>Built a Python and OpenCV stitching pipeline that produces high-resolution agricultural field mosaics.</li>
+            <li>Optimized homography estimation and blending for more accurate, consistent stitching.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <h3>Logistics &amp; Inventory Systems Analyst</h3>
+          <span class="when">May 2020 – Jun 2022</span>
+          <p class="org">Sri Venkateswara Traders, Marthandam, Kanyakumari</p>
+          <ul>
+            <li>Managed digital inventory tracking systems for regional FMCG distribution.</li>
+            <li>Analysed logistics data to forecast demand and optimize vendor delivery planning.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="publications">
+    <div class="wrap">
+      <div class="label"><h2>Publications <span class="count">5 papers</span></h2></div>
+      <ol class="pubs">
+        <li class="pub">
+          <span class="t">Physics-Guided, Explainable AI for Multi-Domain Health Monitoring of Autonomous Drones using Flight Dynamics</span>
+          <span class="venue status">ASME · Accepted</span>
+        </li>
+        <li class="pub">
+          <span class="t">Visual Transformers for Scalable Detection and Mapping of Ocean Plastic Debris</span>
+          <a class="venue" href="https://research.ebsco.com/c/574vc2/search/details/bslxqto5qf?request-context=plink&amp;db=edb" target="_blank" rel="noopener">Read ↗</a>
+        </li>
+        <li class="pub">
+          <span class="t">Drone-based Pest Control: LiteDepthwiseNet Stem Borer Detection on Jetson Nano</span>
+          <a class="venue" href="https://ieeexplore.ieee.org/abstract/document/11140884" target="_blank" rel="noopener">IEEE ↗</a>
+        </li>
+        <li class="pub">
+          <span class="t">Improving Sign Language Recognition for Deaf and Hard of Hearing Individuals using the VGG16 Model</span>
+          <a class="venue" href="https://ieeexplore.ieee.org/abstract/document/10841585" target="_blank" rel="noopener">IEEE ↗</a>
+        </li>
+        <li class="pub">
+          <span class="t">A Comparative Study of VGG19, DenseNet and Inception V3 for Wildlife and Human Threat Detection</span>
+          <a class="venue" href="https://ieeexplore.ieee.org/abstract/document/11031571" target="_blank" rel="noopener">IEEE ↗</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="label"><h2>Projects</h2></div>
+      <div class="projects">
+        <article class="project">
+          <header><h3>Physics-Guided Drone Health Monitoring System</h3></header>
+          <p>A multi-domain diagnostic framework that turns ArduPilot flight logs into physics-guided indicators, tracking both sudden failures and long-term drone degradation. A decoupled XGBoost ensemble with SHAP handles extreme class imbalance and gives transparent fault isolation.</p>
+          <div class="metrics">
+            <div class="metric"><b>0.7725</b><span>Macro-F1</span></div>
+            <div class="metric"><b>40,932</b><span>flight windows</span></div>
+          </div>
+          <ul class="tools"><li>Python</li><li>XGBoost</li><li>SHAP</li><li>Pandas</li><li>NumPy</li><li>scikit-learn</li></ul>
+        </article>
+        <article class="project">
+          <header>
+            <h3>Moon Crater Detection &amp; Morphometric Estimation</h3>
+            <a class="gh" href="https://github.com/Ansilins/physics-guided-lunar-crater-morphometry" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+              Code</a>
+          </header>
+          <p>Computes lunar crater diameter, depth and volume directly from 2D imagery using a shadow-based detection approach with U-Net and YOLOv12. Includes preprocessing, segmentation, and validation against DEM data and manual measurements.</p>
+          <ul class="tools"><li>Python</li><li>PyTorch</li><li>OpenCV</li><li>NumPy</li><li>Pandas</li><li>Matplotlib</li><li>Seaborn</li></ul>
+        </article>
+        <article class="project">
+          <header>
+            <h3>MedGAN: Progressive GAN for Synthetic CT &amp; MRI</h3>
+            <a class="gh" href="https://github.com/Ansilins/medgan-progan-medical-image-synthesis" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+              Code</a>
+          </header>
+          <p>A ProGAN framework that generates high-quality synthetic medical scans to address data scarcity in medical imaging. Progressive growing with WSConv2d layers and PixelNorm, gradient-penalty stabilization, mixed-precision training, checkpointing and TensorBoard monitoring.</p>
+          <div class="metrics">
+            <div class="metric"><b>4² → 128²</b><span>progressive resolution</span></div>
+          </div>
+          <ul class="tools"><li>Python</li><li>PyTorch</li><li>TensorBoard</li><li>NumPy</li><li>Matplotlib</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="label"><h2>Education</h2></div>
+      <div class="edu">
+        <article class="entry">
+          <h3>Master's, Electrical Engineering &amp; Computer Science</h3>
+          <span class="when">Sep 2026 – present</span>
+          <p class="org">National Taipei University of Technology, Taipei, Taiwan</p>
+        </article>
+        <article class="entry">
+          <h3>B.Tech, Artificial Intelligence &amp; Data Science</h3>
+          <span class="when">2022 – Jun 2025</span>
+          <p class="org">Vel Tech Rangarajan Dr. Sagunthala R&amp;D Institute of Science and Technology, Chennai · CGPA 7.48 / 10</p>
+        </article>
+        <article class="entry">
+          <h3>Exchange Student</h3>
+          <span class="when">Feb 2025 – Jun 2025</span>
+          <p class="org">National Taipei University of Technology · One semester of coursework</p>
+        </article>
+        <article class="entry">
+          <h3>Diploma, Civil Engineering</h3>
+          <span class="when">2018 – 2020</span>
+          <p class="org">Morning Star Polytechnic College, Nagercoil · 70%</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="label"><h2>Skills</h2></div>
+      <dl class="skills">
+        <div class="skill"><dt>Languages</dt><dd>Python, SQL (basic)</dd></div>
+        <div class="skill"><dt>Machine &amp; deep learning</dt><dd>PyTorch, TensorFlow, OpenCV, CNNs, GANs, transfer learning, XGBoost, SHAP, regression and classification</dd></div>
+        <div class="skill"><dt>Data science</dt><dd>NumPy, Pandas, Matplotlib, Seaborn, exploratory data analysis, spectral analysis</dd></div>
+        <div class="skill"><dt>Tools &amp; platforms</dt><dd>Git, Docker, Jupyter, LaTeX, Microsoft Power Platform, Linux, Windows</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" id="certifications">
+    <div class="wrap">
+      <div class="label"><h2>Certifications <span class="count">6 certificates</span></h2></div>
+      <ul class="certs">
+        <li class="cert"><span class="n">Responsible &amp; Safe AI Systems</span><span class="m">NPTEL · Nov 2024</span><span class="id">NPTEL24CS132S756301412</span></li>
+        <li class="cert"><span class="n">Patent Law for Engineers and Scientists</span><span class="m">NPTEL · Nov 2024</span><span class="id">NPTEL24HS155S956301010</span></li>
+        <li class="cert"><span class="n">Google Cloud Computing Foundations</span><span class="m">NPTEL · Nov 2024</span><span class="id">NPTEL24CS131S1356300665</span></li>
+        <li class="cert"><span class="n">NumPy for Data Science: Real-Time Exercises</span><span class="m">Udemy · Jun 2024</span></li>
+        <li class="cert"><span class="n">Data Science Using Python</span><span class="m">360DigiTMG · Feb 2023</span><span class="id">360DTMGIN14757</span></li>
+        <li class="cert"><span class="n">Artificial Intelligence and Deep Learning</span><span class="m">360DigiTMG · Jul 2022</span><span class="id">360DTMGIN11626</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="languages">
+    <div class="wrap">
+      <div class="label"><h2>Languages</h2></div>
+      <ul class="langs">
+        <li class="lang"><b>Tamil</b><span>Native</span></li>
+        <li class="lang"><b>English</b><span>Fluent</span></li>
+        <li class="lang"><b>Malayalam</b><span>Fluent</span></li>
+        <li class="lang"><b>German</b><span>Basic</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2>Open to research collaborations and AI engineering roles.</h2>
+      <p>If you work on explainable AI, autonomous systems or remote sensing, I'd be glad to hear from you. Email is the best way to reach me.</p>
+      <div class="mail">
+        <code id="email">ansilinkumartw01@gmail.com</code>
+        <button class="btn" type="button" id="copy">Copy email</button>
+        <a class="btn primary" href="mailto:ansilinkumartw01@gmail.com">Send email</a>
+        <span class="copied" id="copied" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ansilin Kumar S M</span>
+    <span>Taipei, Taiwan</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var out = document.getElementById('copied');
+  var email = document.getElementById('email');
+  function selectText() {
+    var r = document.createRange(); r.selectNodeContents(email);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    var done = function () { out.textContent = 'Copied'; setTimeout(function () { out.textContent = ''; }, 2000); };
+    var fail = function () { selectText(); out.textContent = 'Press Ctrl+C to copy'; };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fail);
+      } else { fail(); }
+    } catch (e) { fail(); }
+  });
+})();
+</script>
+</body>
+</html>
